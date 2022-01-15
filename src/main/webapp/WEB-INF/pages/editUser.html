@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+     <if test="${empty user.getFirstName()}">
+        <title>Add</title>
+    </if>
+    <if test="${!empty user.getFirstName()}">
+        <title>Edit</title>
+    </if>
+</head>
+<body>
+
+<if test="${!empty user.firstName}">
+    <url value="/add" var="var"></url>
+    <th>actionE</th>
+</if>
+
+<!--<c:if test="${!empty user.getFirstName()}">-->
+<!--    <c:url value="/edit" var="var"/>-->
+<!--</c:if>-->
+
+<form action="${var}" th:object="${user}" method="POST">>
+
+    <if test="${!empty user.getFirstName()}">
+        <input type="hidden" name="id" value="${user.getId()}">
+    </if>
+
+    <input type="hidden" name="id" value="${user.getId}">
+
+    <label for="FirstName">FirstName</label>
+    <input type="text" th:field = "*{firstName}" id="FirstName"/>
+
+    <input type="text" th:field = "*{lastName}"/>
+
+    <input type="number" th:field = "*{age}"/>
+
+    <input type="email" th:field = "*{email}"/>
+
+    <input type="submit" value="Create" />
+
+    <if test="${user.getId}">
+        <input type="submit" value="Add new user">
+    </if>
+
+<!--    <c:if test="${!user.getFirstName()}">-->
+<!--        <input type="submit" value="Edit film">-->
+<!--    </c:if>-->
+
+</form>
+</body>
+</html>
