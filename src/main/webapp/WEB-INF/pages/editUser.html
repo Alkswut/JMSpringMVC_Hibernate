@@ -7,7 +7,7 @@
 </head>
 <body>
 <center>
-    <form  th:action="@{/edit/${user.getId()}}" th:object="${user}" th:method="patch">
+    <form  th:action="@{/edit/${id}}" th:object="${user}" th:method="post">
         <label for="name">new name</label>
         <input type="text" th:field="*{firstName}" id="name"/>
         <br/>

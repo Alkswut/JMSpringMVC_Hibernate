@@ -40,11 +40,12 @@ public class UserController {
         return modelAndView;
     }
 
-    @PatchMapping(value = "/edit/{id}")
+    @GetMapping(value = "/edit/{id}")
     public ModelAndView editPage(@PathVariable("id") int id) {
+        User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editUser");
-        modelAndView.addObject("user", userService.getById(id));
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 
@@ -65,7 +66,6 @@ public class UserController {
         return modelAndView;
     }
 }
-
 //    @GetMapping(value="/edit")
 //    public String printCar(HttpServletRequest request, Model model){
 //        //String str = request.getParameter("count");

@@ -20,13 +20,13 @@
         </tr>
         <tbody>
         <tr th:each="user : ${userList}">
-            <td th:text="${user.getId()}">id</td>
-            <td th:text="${user.getFirstName()}">firstName</td>
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getFirstName()}"></td>
             <td th:text="${user.getLastName()}">lastName</td>
             <td th:text="${user.getAge()}">age</td>
             <td th:text="${user.getEmail()}">email</td>
-            <td><center><a th:method="PATCH" href="/edit/${user.getId()}" th:object="${user}">EDIT</a></center></td>
-            <td><center><a methods="GET" href="/delete/${user.getId()}" >DELETE</a></center></td>
+            <td><center><a th:method="POST" href="/edit/${id}" th:object="${user}" >EDIT</a></center></td>
+            <td><center><a th:method="GET" href="/delete/${user.getId()}" >DELETE</a></center></td>
         </tr>
         </tbody>
     </table>
