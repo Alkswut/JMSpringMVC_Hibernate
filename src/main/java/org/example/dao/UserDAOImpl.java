@@ -30,7 +30,9 @@ public class UserDAOImpl implements UserDao {
     @Override
     public void delete(User user) {
         Session session = entityManager.unwrap(Session.class);
-        session.delete(user);
+        //session.remove(user);
+        entityManager.remove(user);
+        //session.delete(user);
     }
 
     @Override

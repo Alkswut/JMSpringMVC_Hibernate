@@ -16,19 +16,34 @@ public class UserController {
 
     @GetMapping(value = "/")
     public ModelAndView allUsers() {
-        List<User> userList = userService.allUsers();
         ModelAndView modelAndView = new ModelAndView();
+        List<User> userList = userService.allUsers();
         modelAndView.setViewName("users");
         modelAndView.addObject("userList", userList);
         return modelAndView;
     }
 
+    @GetMapping(value = "/add")
+    public ModelAndView addPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", new User());
+        modelAndView.setViewName("addUser");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/users")
+    public ModelAndView addUser(@ModelAttribute("user") User user) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        modelAndView.addObject("user");
+        userService.add(user);
+        return modelAndView;
+    }
+
     @PatchMapping(value = "/edit/{id}")
     public ModelAndView editPage(@PathVariable("id") int id) {
-        User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editUser");
-        //modelAndView.addObject("user", user);
         modelAndView.addObject("user", userService.getById(id));
         return modelAndView;
     }
@@ -38,22 +53,6 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.editUser(user);
-        return modelAndView;
-    }
-
-    @GetMapping(value = "/add")
-    public ModelAndView addPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("addUser");
-        return modelAndView;
-    }
-
-    @PostMapping(value = "/add")
-    public ModelAndView addUser(@ModelAttribute("user") User user) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
-        modelAndView.addObject("user", user);
-        userService.add(user);
         return modelAndView;
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,26 +18,20 @@
             <th>actionE</th>
             <th>actionD</th>
         </tr>
+        <tbody>
         <tr th:each="user : ${userList}">
-            <td th:text="${user.getId()}">...</td>
-            <td th:text="${user.getFirstName()}">...</td>
-            <td th:text="${user.getLastName()}">...</td>
-            <td th:text="${user.getAge()}">...</td>
-            <td th:text="${user.getEmail()}">...</td>
-            <td>
-                <center><a href="/edit/${user.getId()}">EDIT</a></center>
-            </td>
-            <td>
-                <center><a href="/delete/${user.getId()}">DELETE</a></center>
-            </td>
+            <td th:text="${user.getId()}">id</td>
+            <td th:text="${user.getFirstName()}">firstName</td>
+            <td th:text="${user.getLastName()}">lastName</td>
+            <td th:text="${user.getAge()}">age</td>
+            <td th:text="${user.getEmail()}">email</td>
+            <td><center><a th:method="PATCH" href="/edit/${user.getId()}" th:object="${user}">EDIT</a></center></td>
+            <td><center><a methods="GET" href="/delete/${user.getId()}" >DELETE</a></center></td>
         </tr>
+        </tbody>
     </table>
     <br/>
-    <a href="/add">Add User</a></td>
-    <!--    <div align="center">-->
-    <!--    <c:url value="/add" var="add"/>-->
-    <!--        <a th:href="@{/add}">Add new user</a>-->
-    <!--    </div>-->
+    <center><a href="/add"><input type="submit" value="Add User"></a></center>
 </div>
 </body>
 </html>
