@@ -66,8 +66,3 @@ public class UserController {
         return modelAndView;
     }
 }
-//    @GetMapping(value="/edit")
-//    public String printCar(HttpServletRequest request, Model model){
-//        //String str = request.getParameter("count");
-//        return "users";
-//    }

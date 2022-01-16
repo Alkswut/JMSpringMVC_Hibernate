@@ -25,8 +25,8 @@
             <td th:text="${user.getLastName()}">lastName</td>
             <td th:text="${user.getAge()}">age</td>
             <td th:text="${user.getEmail()}">email</td>
-            <td><center><a th:method="POST" href="/edit/${id}" th:object="${user}" >EDIT</a></center></td>
-            <td><center><a th:method="GET" href="/delete/${user.getId()}" >DELETE</a></center></td>
+            <td><center><a th:method="GET" th:href="@{/edit/{id}(id=${user.getId()})}" >EDIT</a></center></td>
+            <td><center><a th:method="GET" th:href="@{/delete/{id}(id=${user.getId()})}" >DELETE</a></center></td>
         </tr>
         </tbody>
     </table>
